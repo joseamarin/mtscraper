@@ -1,39 +1,7 @@
 (function(window, document) {
 	'use strict';
 
-	const template = `
-ADV (9) Green and (1397) Lillypad 4 Packages:
-
-Hi Team,
-
-Please find your offer ADV here listed below and attached:
-
-Offer(s):
-(ID) ADV
-
-Affiliate(s):
-Green (9)
-Lillypad4 (1397)
-
-
-Creative(s):
-Creative Name here
-
-
-Subject Line(s):
-SL
-
-From Line(s):
-FL
-
-Unsubscribe URL:
-UNSUB
-
-Preapproval seeds:
-zxtest@zetainteractive.com
-
-Thanks.
-	`;
+	const template = "ADV (9) Green and (1397) Lillypad 4 Packages:\n\nHi Team,\n\nPlease find your offer ADV here listed below and attached:\n\nOffer(s):\n(ID) ADV\n\nAffiliate(s):\nGreen (9)\nLillypad4 (1397)\n\nCreative(s):\nCreative Name here\n\nSubject Line(s):\nSL\n\nFrom Line(s):\nFL\n\nUnsubscribe URL:\nUNSUB\n\nPreapproval seeds:\n\nzxtest@zetainteractive.com\n\nThanks.";
 
 	const advName = document.getElementsByTagName('input')[3].attributes.value.nodeValue;
 
