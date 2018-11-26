@@ -1,7 +1,12 @@
-.cpy-btn {
-	background-color: green;
-	width: 100px;
-	height: 100px;
-	border-radius: 3px;
-	color: white;
+body {
+	font-family: 'Verdana';
+	background-color: #E3FAD1;
+	color: #000;
 }
+
+#codeOut {
+	background-color: #509C10;
+	border: 3px solid black;
+	border-radius: 20px;
+}
+
