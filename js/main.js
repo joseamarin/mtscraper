@@ -208,7 +208,7 @@
 		const headerText = document.createElement('p');
 		const root = document.getElementsByTagName('table')[0];
 		const copyBtn =  document.createElement('button');
-		copyBtn.style.backgroundImage = 'url()';
+		copyBtn.style.backgroundImage = 'url(https://raw.githubusercontent.com/joseamarin/mtscraper/master/assets/copy.gif)';
 		copyBtn.style.position = 'fixed';
 		copyBtn.style.top = '50%';
 		copyBtn.style.right = '50%';
