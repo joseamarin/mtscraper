@@ -131,11 +131,12 @@
 		return unfilteredContext
 			.replace(/\(Active - A - AA \)/g, '')
 			.replace(/\(Active - O - AA \)/g, '')
+			.replace(/.*\(Active - A - NA! \)/g, '')
 			.replace(/^[0-9]{0,}/g, '')
 			.replace(/^[0-9]{0,}/g, '')
 			.replace(/-/, '')
-			.replace(/\(Inactive - A - NA! \)/g, '')
-			.replace(/^.*\(Inactive - A - AA \)/g, '');
+			.replace(/.*\(Inactive - A - NA! \)/g, '')
+			.replace(/.*\(Inactive - A - AA \)/g, '');
 	}
 
 	const createArray = (domElement) => {
@@ -156,14 +157,17 @@
 
 	const unsub = document.getElementsByName('unsub_link')[0].attributes.value.nodeValue;
 
-	const pkgTemplate = "ADV (9) Green and (1397) PlutoC Packages:\n\nHi Team,\n\nPlease find your offer ADV here listed below and attached:\n\nOffer(s):\n(ID) ADV\n\nAffiliate(s):\nGreen (9)\nPlutoC (1397)\n\nCreative(s):\nCreative Name here\n\nSubject Line(s):\nSL\n\nFrom Line(s):\nFL\n\nUnsubscribe URL:\nUNSUB\n\nPreapproval seeds:\nzxtest@zetainteractive.com\n\nThanks.";
+	const pkgTemplate = "ADV (9) Green and (1397) PlutoC Packages: Setup Assets and Approved\n\nHi Team,\n\nPlease find your offer ADV here listed below and attached:\n\nOffer(s):\n(ID) ADV\n\nAffiliate(s):\nGreen (9)\nPlutoC (1397)\n\nCreative(s):\nCreative Name here\n\nSubject Line(s):\nSL\n\nFrom Line(s):\nFL\n\nUnsubscribe URL:\nUnsublink here\n\nPreapproval seeds:\nzxtest@zetainteractive.com\n\nThanks.";
 
 	const buildEmail = pkgTemplate => {
 		pkgTemplate = pkgTemplate.replace(/ADV/g, advertiserName);
 		pkgTemplate = pkgTemplate.replace(/ID/g, cakeOfferId);
-		pkgTemplate = pkgTemplate.replace(/SL/g, subs);
-		pkgTemplate = pkgTemplate.replace(/FL/g, froms);
-		// pkgTemplate = pkgTemplate.replace(/UNSUB/g, unsub);
+		subs.length === 0 ?
+			pkgTemplate = pkgTemplate.replace(/SL/g, 'No (Active - A - AA ) or (Active - O - AA ) Subject Lines found')
+			: pkgTemplate = pkgTemplate.replace(/SL/g, subs);
+		froms.length === 0 ?
+			pkgTemplate = pkgTemplate.replace(/FL/g, 'No (Active - A - AA ) or (Active - O - AA ) From Lines found')
+			: pkgTemplate = pkgTemplate.replace(/FL/g, froms);
 		return pkgTemplate;
 	}
 
