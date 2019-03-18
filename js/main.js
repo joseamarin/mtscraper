@@ -23,8 +23,8 @@
 
 	function OfferIdStrategy ( validityHandler , extractionHandler ) {
 		this.config = {
-			"validate" : validityHandler ,
-			"extract" : extractionHandler
+			'validate' : validityHandler ,
+			'extract' : extractionHandler
 		};
 
 		this.isValidContext = function ( rawContext ) {
@@ -152,12 +152,19 @@
 			}).join('\n');
 	}
 
-	const subs = createArray(document.getElementsByName('csubject')[0]);
+	// have to reverse the order
+	const subs = createArray(document.getElementsByName('csubject')[0])
+		.split('\n').reverse().join('\n').split('\n')
+		.map(function(v) {
+			return v.trim()
+		}).filter(function(v) {
+			return v != '';
+		}).join('\n');;
 	const froms = createArray(document.getElementsByName('from')[0]);
 
 	const unsub = document.getElementsByName('unsub_link')[0].attributes.value.nodeValue;
 
-	const pkgTemplate = "ADV (9) Green and (1397) PlutoC Packages: Setup Assets and Approved\n\nHi Team,\n\nPlease find your offer ADV here listed below and attached:\n\nOffer(s):\n(ID) ADV\n\nAffiliate(s):\nGreen (9)\nPlutoC (1397)\n\nCreative(s):\nCreative Name here\n\nSubject Line(s):\nSL\n\nFrom Line(s):\nFL\n\nUnsubscribe URL:\nUnsublink here\n\nPreapproval seeds:\nzxtest@zetainteractive.com\n\nThanks.";
+	const pkgTemplate = 'ADV (9) Green and (1397) Pluto C Packages: Setup Assets and Approved\n\nHi Team,\n\nPlease find your offer ADV here listed below and attached:\n\nOffer(s):\n(ID) ADV\n\nAffiliate(s):\nGreen (9)\nPluto C (1397)\n\nCreative(s):\nCreative Name here\n\nSubject Line(s):\nSL\n\nFrom Line(s):\nFL\n\nUnsubscribe URL:\nUNSUB\n\nPreapproval seeds:\nzxtest@zetainteractive.com\n\nThanks.';
 
 	const buildEmail = pkgTemplate => {
 		pkgTemplate = pkgTemplate.replace(/ADV/g, advertiserName);
@@ -168,6 +175,9 @@
 		froms.length === 0 ?
 			pkgTemplate = pkgTemplate.replace(/FL/g, 'No (Active - A - AA ) or (Active - O - AA ) From Lines found')
 			: pkgTemplate = pkgTemplate.replace(/FL/g, froms);
+		unsub.length === 0 ?
+			pkgTemplate = pkgTemplate.replace(/UNSUB/g, 'No Advertiser Unsubscribe URL found')
+			: pkgTemplate = pkgTemplate.replace(/UNSUB/g, unsub);
 		return pkgTemplate;
 	}
 
